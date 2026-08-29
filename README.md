@@ -223,7 +223,7 @@ Reverse Engineering Harness/
 
 ---
 
-## Further Reading
+## Further Reading (non disclosed content - Cronos IP)
 
 - [`../docs/first-time-users/03-reverse-engineer-application.md`](../docs/first-time-users/03-reverse-engineer-application.md) - the reverse-engineering route this harness automates
 - [`../docs/architecture-as-an-active-delivery-system.md`](../docs/architecture-as-an-active-delivery-system.md) - the AAAC approach
