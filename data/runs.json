@@ -1,0 +1,184 @@
+[
+  {
+    "id": "e209aadc-eed5-4650-9a49-60f73d5e9d2c",
+    "targetRepo": "/Users/rudimaelbrancke/Programming/Codex/duo-koks-3d",
+    "startedAt": "2026-08-29T09:23:27.686Z",
+    "finishedAt": "2026-08-29T09:23:29.442Z",
+    "status": "failed",
+    "mcpPostProcess": false,
+    "mcpDone": false,
+    "stages": [
+      {
+        "name": "legacy-architecture-discovery",
+        "status": "failed",
+        "startedAt": "2026-08-29T09:23:27.687Z",
+        "finishedAt": "2026-08-29T09:23:29.441Z"
+      },
+      {
+        "name": "derive-architecture-folder",
+        "status": "pending",
+        "startedAt": null,
+        "finishedAt": null
+      },
+      {
+        "name": "structurizr-c4-dsl",
+        "status": "pending",
+        "startedAt": null,
+        "finishedAt": null
+      }
+    ]
+  },
+  {
+    "id": "3f3c394c-aa40-4ead-bd26-4c7f3241b346",
+    "targetRepo": "/Users/rudimaelbrancke/Programming/Codex/duo-koks-3d",
+    "startedAt": "2026-08-29T09:28:59.905Z",
+    "finishedAt": "2026-08-29T09:37:52.012Z",
+    "status": "completed",
+    "mcpPostProcess": false,
+    "mcpDone": false,
+    "stages": [
+      {
+        "name": "legacy-architecture-discovery",
+        "status": "completed",
+        "startedAt": "2026-08-29T09:28:59.906Z",
+        "finishedAt": "2026-08-29T09:33:21.667Z"
+      },
+      {
+        "name": "derive-architecture-folder",
+        "status": "completed",
+        "startedAt": "2026-08-29T09:33:21.668Z",
+        "finishedAt": "2026-08-29T09:36:25.832Z"
+      },
+      {
+        "name": "structurizr-c4-dsl",
+        "status": "completed",
+        "startedAt": "2026-08-29T09:36:25.832Z",
+        "finishedAt": "2026-08-29T09:37:52.012Z"
+      }
+    ]
+  },
+  {
+    "id": "f30729c3-2510-4490-944d-630a9d6cf1ac",
+    "targetRepo": "/Users/rudimaelbrancke/Programming/Codex/duo-koks-3d",
+    "startedAt": "2026-08-29T10:44:39.602Z",
+    "finishedAt": "2026-08-29T10:59:57.867Z",
+    "status": "completed",
+    "mcpPostProcess": false,
+    "mcpDone": false,
+    "dslValid": false,
+    "dslRepairAttempts": 3,
+    "stages": [
+      {
+        "name": "legacy-architecture-discovery",
+        "status": "completed",
+        "startedAt": "2026-08-29T10:44:39.602Z",
+        "finishedAt": "2026-08-29T10:49:06.465Z"
+      },
+      {
+        "name": "derive-architecture-folder",
+        "status": "completed",
+        "startedAt": "2026-08-29T10:49:06.466Z",
+        "finishedAt": "2026-08-29T10:51:15.095Z"
+      },
+      {
+        "name": "structurizr-c4-dsl",
+        "status": "completed",
+        "startedAt": "2026-08-29T10:51:15.096Z",
+        "finishedAt": "2026-08-29T10:58:45.181Z"
+      }
+    ]
+  },
+  {
+    "id": "1174d43d-e675-48e8-9a51-3d757d4c8eb3",
+    "targetRepo": "/Users/rudimaelbrancke/Programming/Codex/duo-koks-3d",
+    "startedAt": "2026-08-29T11:16:08.389Z",
+    "finishedAt": "2026-08-29T11:23:39.745Z",
+    "status": "completed",
+    "mcpPostProcess": false,
+    "mcpDone": false,
+    "dslValid": true,
+    "dslRepairAttempts": 0,
+    "stages": [
+      {
+        "name": "legacy-architecture-discovery",
+        "status": "completed",
+        "startedAt": "2026-08-29T11:16:08.390Z",
+        "finishedAt": "2026-08-29T11:16:57.191Z"
+      },
+      {
+        "name": "derive-architecture-folder",
+        "status": "completed",
+        "startedAt": "2026-08-29T11:16:57.192Z",
+        "finishedAt": "2026-08-29T11:20:36.830Z"
+      },
+      {
+        "name": "structurizr-c4-dsl",
+        "status": "completed",
+        "startedAt": "2026-08-29T11:20:36.830Z",
+        "finishedAt": "2026-08-29T11:23:38.612Z"
+      }
+    ]
+  },
+  {
+    "id": "1bc7cde8-edd2-46fe-a2a0-70dbd38058ca",
+    "targetRepo": "/Users/rudimaelbrancke/Programming/AAAC/ReverseEngineeringHarness",
+    "startedAt": "2026-08-29T13:09:37.032Z",
+    "finishedAt": "2026-08-29T13:15:16.198Z",
+    "status": "failed",
+    "mcpPostProcess": false,
+    "mcpDone": false,
+    "dslValid": null,
+    "dslRepairAttempts": 0,
+    "stages": [
+      {
+        "name": "legacy-architecture-discovery",
+        "status": "completed",
+        "startedAt": "2026-08-29T13:09:37.033Z",
+        "finishedAt": "2026-08-29T13:13:35.619Z"
+      },
+      {
+        "name": "derive-architecture-folder",
+        "status": "failed",
+        "startedAt": "2026-08-29T13:13:35.620Z",
+        "finishedAt": "2026-08-29T13:15:16.197Z"
+      },
+      {
+        "name": "structurizr-c4-dsl",
+        "status": "pending",
+        "startedAt": null,
+        "finishedAt": null
+      }
+    ]
+  },
+  {
+    "id": "004bf85e-1702-44fa-800f-1a3b6535a58b",
+    "targetRepo": "/Users/rudimaelbrancke/Programming/AAAC/ReverseEngineeringHarness",
+    "startedAt": "2026-08-29T13:49:46.487Z",
+    "finishedAt": null,
+    "status": "running",
+    "mcpPostProcess": false,
+    "mcpDone": false,
+    "dslValid": null,
+    "dslRepairAttempts": 0,
+    "stages": [
+      {
+        "name": "legacy-architecture-discovery",
+        "status": "completed",
+        "startedAt": "2026-08-29T13:49:46.488Z",
+        "finishedAt": "2026-08-29T13:53:04.098Z"
+      },
+      {
+        "name": "derive-architecture-folder",
+        "status": "running",
+        "startedAt": "2026-08-29T13:53:04.099Z",
+        "finishedAt": null
+      },
+      {
+        "name": "structurizr-c4-dsl",
+        "status": "pending",
+        "startedAt": null,
+        "finishedAt": null
+      }
+    ]
+  }
+]

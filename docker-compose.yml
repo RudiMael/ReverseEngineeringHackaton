@@ -1,0 +1,54 @@
+services:
+  harness:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rev-eng-harness:latest
+    container_name: rev-eng-harness
+    restart: unless-stopped
+    ports:
+      - "${PORT:-4200}:4200"
+
+    volumes:
+      # ── Docker socket — required for Structurizr validation + preview ──
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      # ── Host repositories — mount the root that contains your codebases ──
+      # Edit REPOS_ROOT in .env to point at your actual repos folder.
+      # Inside the container this becomes /repos, so enter /repos/<name>
+      # in the harness UI instead of the host path.
+      - ${REPOS_ROOT:-~/repos}:/repos
+
+      # ── Persistent run history ──
+      - harness-data:/app/data
+
+    environment:
+      # ── Anthropic auth — set ONE of these ──
+      # Standard API key:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      # Route33 / custom gateway (used instead of API key when set):
+      ANTHROPIC_AUTH_TOKEN: ${ANTHROPIC_AUTH_TOKEN:-}
+
+      # ── Optional: custom gateway endpoint + model ──
+      ANTHROPIC_BASE_URL:  ${ANTHROPIC_BASE_URL:-}
+      ANTHROPIC_MODEL:     ${ANTHROPIC_MODEL:-}
+
+      # ── Path translation: host path that maps to /repos inside the container ──
+      # Must match REPOS_ROOT on the host side of the volume mount.
+      HOST_REPOS_ROOT: ${REPOS_ROOT:-~/repos}
+
+      # ── Architecture repository root (for MCP post-processing) ──
+      ARCHITECTURE_REPOSITORY_ROOT: ${ARCHITECTURE_REPOSITORY_ROOT:-/repos/architecture}
+
+      # ── Port ──
+      PORT: 4200
+
+    # The container needs to resolve host paths when calling docker run
+    # with volume mounts for Structurizr.  Pass the host repos root so
+    # the harness can translate /repos/<name> back to the real host path.
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  harness-data:
+    driver: local

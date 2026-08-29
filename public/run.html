@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Run Detail — Reverse Engineering Harness</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <span class="logo">Reverse Engineering <span>Harness</span></span>
+  <nav>
+    <a href="index.html">← All Runs</a>
+  </nav>
+</header>
+
+<main>
+
+  <div id="run-error" class="alert alert-error" style="display:none"></div>
+
+  <!-- ── Run header ─────────────────────────────────────────── -->
+  <div class="card" id="run-header-card">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div style="font-size:12px;color:#57606a;margin-bottom:4px;">Repository</div>
+        <div id="run-repo" class="repo-path" style="font-size:14px;max-width:none;white-space:normal;word-break:break-all;"></div>
+      </div>
+      <div style="text-align:right;">
+        <div style="margin-bottom:4px;"><span id="run-status-badge" class="badge">—</span></div>
+        <div style="font-size:12px;color:#57606a;" id="run-times"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Stage tracker ──────────────────────────────────────── -->
+  <div class="card">
+    <h2>Pipeline Stages</h2>
+    <div class="stages" id="stage-tracker">
+      <div class="stage-item" id="stage-legacy-architecture-discovery">
+        <div class="stage-name" id="stage-name-legacy-architecture-discovery">Stage 1</div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Legacy Architecture Discovery</div>
+        <div><span class="badge badge-pending" id="stage-badge-legacy-architecture-discovery">Pending</span></div>
+      </div>
+      <div class="stage-item" id="stage-derive-architecture-folder">
+        <div class="stage-name" id="stage-name-derive-architecture-folder">Stage 2</div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Derive Architecture Folder</div>
+        <div><span class="badge badge-pending" id="stage-badge-derive-architecture-folder">Pending</span></div>
+      </div>
+      <div class="stage-item" id="stage-structurizr-c4-dsl">
+        <div class="stage-name" id="stage-name-structurizr-c4-dsl">Stage 3</div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Structurizr C4 DSL</div>
+        <div><span class="badge badge-pending" id="stage-badge-structurizr-c4-dsl">Pending</span></div>
+      </div>
+      <div class="stage-item" id="stage-dsl-quality">
+        <div class="stage-name" id="stage-name-dsl-quality">Stage 4</div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">DSL Quality</div>
+        <div><span class="badge badge-pending" id="stage-badge-dsl-quality">Pending</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Live Log ───────────────────────────────────────────── -->
+  <div class="card">
+    <div class="log-header">
+      <h2 style="border:none;padding:0;margin:0;">Live Output</h2>
+      <button class="btn btn-secondary btn-sm" id="copy-log-btn" title="Copy log to clipboard">Copy</button>
+    </div>
+    <div id="log-panel"></div>
+  </div>
+
+  <!-- ── MCP Post-processing ────────────────────────────────── -->
+  <div class="card" id="mcp-card" style="display:none;">
+    <h2>MCP Post-Processing</h2>
+    <p style="font-size:13px;color:#57606a;margin-bottom:12px;">
+      Runs <code>architecture_ensure_project_rules</code> and <code>architecture_evaluate_repository</code>
+      against the target repository using the architecture MCP server.
+    </p>
+    <button class="btn btn-primary btn-sm" id="mcp-run-btn">Run MCP Post-Processing</button>
+    <div id="mcp-output"></div>
+  </div>
+
+  <!-- ── Structurizr preview ───────────────────────────────── -->
+  <div class="card" id="structurizr-card" style="display:none;">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:12px;">
+      <div>
+        <h2 style="border:none;padding:0;margin:0 0 4px;">Structurizr Preview</h2>
+        <p style="font-size:12px;color:#57606a;margin:0;">Live C4 diagram viewer — runs locally via Docker</p>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <span id="structurizr-dsl-badge" class="badge badge-pending">DSL: unchecked</span>
+        <span id="structurizr-status-badge" class="badge badge-pending" style="display:none;">Not started</span>
+        <button class="btn btn-secondary btn-sm" id="structurizr-validate-btn">✓ Validate DSL</button>
+        <button class="btn btn-primary btn-sm" id="structurizr-start-btn" disabled title="Validate DSL first">▶ Start Preview</button>
+        <button class="btn btn-secondary btn-sm" id="structurizr-stop-btn" style="display:none;">■ Stop</button>
+        <a id="structurizr-open-link" href="#" target="_blank" rel="noopener" class="btn btn-secondary btn-sm" style="display:none;">Open in browser ↗</a>
+      </div>
+    </div>
+    <div id="structurizr-msg" class="alert" style="display:none;margin-bottom:8px;"></div>
+    <div id="structurizr-validate-output" style="display:none;font-family:monospace;font-size:12px;background:#0d1117;color:#c9d1d9;border-radius:6px;padding:12px 14px;max-height:220px;overflow-y:auto;white-space:pre-wrap;margin-bottom:8px;"></div>
+    <div id="structurizr-info" style="display:none;font-size:12px;color:#57606a;margin-top:4px;line-height:1.6;">
+      Mounting: <code id="structurizr-dsl-dir"></code><br>
+      URL: <a id="structurizr-url-text" href="#" target="_blank" rel="noopener"></a>
+    </div>
+  </div>
+
+  <!-- ── Artifact Browser ───────────────────────────────────── -->
+  <div class="card" id="artifacts-card" style="display:none;">
+    <h2>Architecture Artifacts</h2>
+    <div class="artifact-layout">
+      <div class="artifact-tree" id="artifact-tree">
+        <p style="padding:8px 12px;font-size:12px;color:#57606a;">Loading…</p>
+      </div>
+      <div class="artifact-viewer" id="artifact-viewer">
+        <div class="artifact-viewer-empty">Select a file to view its contents.</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
